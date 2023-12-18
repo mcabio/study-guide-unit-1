@@ -16,8 +16,10 @@ def print_list(items):
         3
         9
     """
+    for item in items: #for loop iterates over the list and then prints them individually
+        print(item)
 
-    print("the wrong thing")
+    # print("the wrong thing")
 
 
 def long_words(words):
@@ -36,8 +38,8 @@ def long_words(words):
         >>> long_words(["all", "are", "tiny"])
         []
     """
-
-    return ['the wrong thing']
+    # This uses list comprehension. Basic syntax is: [expression for item in iterable if condition]
+    return [word for word in words if len(word) > 4]
 
 
 def n_long_words(words, n):
@@ -54,7 +56,7 @@ def n_long_words(words, n):
         ['apples', 'bananas']
     """
 
-    return ['the wrong thing']
+    return [word for word in words if len(word) > n]
 
 
 def smallest_int(numbers):
@@ -73,8 +75,17 @@ def smallest_int(numbers):
         >>> smallest_int([]) is None
         True
     """
+    if not numbers: # This applies to the condition that if the input list is empty, it should return None
+        return None
+    
+    smallest = numbers[0] # This turns the 0 index as the smallest number in the list.
 
-    return 100
+    for num in numbers: # This for loop iterates over the list, looking over the rest of the numbers (num)
+        if num < smallest: # This if statement says, if the loop comes across a number smaller than the 0 index,
+                           # replace the smallest number as that number. This continues until the end of the list.
+            smallest = num
+
+    return smallest 
 
 
 def largest_int(numbers):
@@ -94,7 +105,16 @@ def largest_int(numbers):
         True
     """
 
-    return 0
+    if not numbers:
+        return None
+    
+    largest = numbers[0]
+
+    for num in numbers:
+        if num > largest:
+            largest = num
+
+    return largest
 
 
 def halvesies(numbers):
@@ -111,8 +131,16 @@ def halvesies(numbers):
         >>> halvesies([1, 5])
         [0.5, 2.5]
     """
+    divided_by_two = [] # This list was created for the function to put the output into
 
-    return []
+    for num in numbers: # This for loop iterates over the numbers
+        divided = num / 2 # This creates a variable that represents each number being divided by 2
+        divided_by_two.append(divided) # This appends the divided variable into the empty list called 
+                                       # divided_by_two
+    
+    return divided_by_two # The return statement is outside of the for loop because when it is inside, it 
+                          # exits the loop within the first iteration.
+
 
 
 def word_lengths(words):
@@ -120,11 +148,17 @@ def word_lengths(words):
     
     For example::
     
-        >>> word_lengths(["hello", "hey", "hello", "spam"])
-        [5, 3, 5, 4]
-    """
+    >>> word_lengths(["hello", "hey", "hello", "spam"])
+    [5, 3, 5, 4]"""
 
-    return []
+    length_of_words = []
+
+    for word in words:
+        length = len(word)
+        length_of_words.append(length)
+
+    return length_of_words # I had the brackets surrounding length_of_words but it gave an error because
+                           # the brackets created a list within a list.
 
 
 def sum_numbers(numbers):
@@ -142,8 +176,13 @@ def sum_numbers(numbers):
         >>> sum_numbers([])
         0
     """
-
-    return None
+    add_all = 0
+    
+    for num in numbers:
+        add_all += num # This for loop says that every number that the loop iterates over will be added
+                       # to the add_all variable.
+    
+    return add_all
 
 
 def mult_numbers(numbers):
@@ -166,7 +205,12 @@ def mult_numbers(numbers):
         1
     """
 
-    return None
+    multiply_all = 1 # If the list is empty, the output should always be 1.
+
+    for num in numbers:
+        multiply_all *= num
+
+    return multiply_all
 
 
 def join_strings(words):
@@ -185,7 +229,14 @@ def join_strings(words):
         ''
     """
 
-    return "Not the right thing"
+    joint_words = "" # This creates a variable that represents the string output taken from the input list
+
+    for word in words:
+        joint_words += word # This for loop iterates through all the string in the input list and adds each
+                            # string to the joint_words variable.
+    
+    return joint_words
+    
 
 
 def average(numbers):
@@ -207,7 +258,20 @@ def average(numbers):
     a feel free to provide a good solution here.)
     """
 
-    return 0
+    if not numbers: # This if statement returns None if there are no numbers in the list
+        return None
+    
+    total_sum = 0 # This creates a variable that the for loop will dump total sum of numbers in.
+
+    for num in numbers: # This for loop says that each number that it iterates over will be
+                        # added to the total_sum and continues to add to it 
+                        # until for loop reaches end of the list
+        total_sum += num
+
+    mean = total_sum / len(numbers) # This creates a variable 'mean' that says the total_sum is then 
+                                    # divided by the length of numbers 
+
+    return mean
 
 
 def join_strings_with_comma(words):
@@ -227,7 +291,13 @@ def join_strings_with_comma(words):
         'Pretzel'
     """
 
-    return ""
+    # joint_words = " "
+    # for word in words:
+    #     joint_words += " " + word
+
+    # return joint_words
+
+    return ', '.join(words)
 
 
 def reverse_list(items):
@@ -250,8 +320,21 @@ def reverse_list(items):
         >>> orig
         ['apple', 'berry', 'cherry']
     """
+    # reversed_items = [] # Creates a variable that will add the reversed words that the for loop iterates over
 
-    return []
+    # for i in range(len(items) - 1, -1, -1): #  This is a for loop that iterates 
+    #                                         # over the indices generated by the range object. This 
+    #                                         # creates a range object that starts from 
+    #                                         # len(items) - 1 (the last index of the list) 
+    #                                         # and goes down to -1 (exclusive) with a step of -1.
+    #                                         # This effectively generates indices in reverse order.
+    #     reversed_items.append(items[i]) # For each index i in reverse order, it appends 
+    #                                     # the corresponding element from the original items 
+    #                                     # list to the reversed_items list.
+
+    # return reversed_items
+
+    return items[::-1]
 
 
 def reverse_list_in_place(items):
@@ -273,8 +356,25 @@ def reverse_list_in_place(items):
         >>> orig
         ['I', 'love', 'cookies']
     """
+    
 
-    return []
+# This calculates the length of the input list and assigns it to the variable length.
+    length = len(items)
+
+    # This loop iterates over the first half of the list. 
+    for i in range(length // 2): # The range(length // 2) generates indices from 0 to the length of the list 
+                                 # divided by 2. It gives the result of the division 
+                                 # rounded down to the nearest integer. For example, 
+                                 # if length of the list is 11, then length // 2 is 5 (since we don't want a decimal 
+                                 # number as an answer). This will output items from indices 0 to 4 (since that is
+                                 # length of 5 items).
+        
+        # Inside the loop, this line swaps elements between the beginning and end of the list. It uses tuple 
+        # unpacking to perform the swap without needing a temporary variable. The result is that the list is 
+        # reversed in place, and no additional list is created. This is achieved by swapping elements 
+        # symmetrically around the midpoint of the list.
+        items[i], items[length - 1 - i] = items[length - 1 - i], items[i] 
+
 
 
 def duplicates(items):
@@ -299,9 +399,43 @@ def duplicates(items):
         >>> orig
         ['apple', 'apple', 'berry']
     """
+        # The commented code did not work because it still kept providing duplicates if there are more than 2 of the
+    # same item.
+    # encountered_items = set()
+    # duplicated_items = []
 
-    return []
+    # for item in items:
+    #     if item in encountered_items: 
+    #         duplicated_items.append(item)
+    #     encountered_items.add(item)
 
+    # return sorted(duplicated_items)
+
+    dupes = [] # This initializes an empty list called dupes that will store the duplicate items.
+
+    items = sorted(items) # This line sorts the input list items in ascending order. 
+                          # Sorting the list simplifies the process of finding duplicates 
+                          # because identical items will be adjacent to each other.
+
+    # This loop iterates over the sorted list, starting from index 1 (the second element) and going up to 
+    # the length of the list. It uses i to represent the current index.
+    for i in range(1, len(items)): # The loop starts at index 1 because the loop compares each element (items[i]) 
+                                   # with its preceding element (items[i - 1]). By starting at index 1, 
+                                   # it ensures that the first element (at index 0) is not compared with 
+                                   # any preceding element. If the loop started at index 0, the comparison 
+                                   # would be between the first and second elements, and there would 
+                                   # be no preceding element for the first element. By starting the 
+                                   # loop at index 1, the code ensures that each element is compared 
+                                   # with the one immediately before it, and it avoids potential issues related to negative indices. 
+        if items[i] == items[i - 1]: # This if statement says, if current item is the same as the item before it, 
+            if items[i] not in dupes: # And if current item is not in the dupes list, 
+                dupes.append(items[i]) # Add it to the dupes list.
+
+    return dupes
+
+# items = ["This", "This", "is", "is", "a", "a", "list", "list", "with", "with", "no", "no", "duplicates", "duplicates"]
+# result = duplicates(items)
+# print(result)
 
 def find_letter_indices(words, letter):
     """Return list of indices where letter appears in each word.
@@ -328,7 +462,28 @@ def find_letter_indices(words, letter):
     `None`.)
     """
 
-    return []
+    indices = [] # This initializes an empty list that will store the index number of the letter stated in 
+                 # the second parameter, letter.
+
+    # Outer Loop (for word in words:): Iterates over each word in the list of words.
+    # found_at = None: Initializes a variable to store the index of the first 
+    # occurrence of the letter in the current word. It starts as None to indicate 
+    # that the letter has not been found yet. 
+    for word in words: 
+        found_at = None # This will also be what is returned if the string does not contain the letter
+
+        # Inner Loop (for i in range(len(word)):): Iterates over each character in the current word.
+        for i in range(len(word)):
+            # Checks if the current character (word[i]) is equal to the target letter. 
+            if word[i] == letter:
+                # If true, it updates found_at with the current index i 
+                # and breaks out of the inner loop.
+                found_at = i
+                break
+        # Appends the result (either the index or None if the letter was not found) to the list of indices.             
+        indices.append(found_at)
+
+    return indices
 
 
 #####################################################################

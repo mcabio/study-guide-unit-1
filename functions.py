@@ -96,7 +96,8 @@ def print_product(int1, int2):
     
 def repeat_string(string, repeat):
     for i in range(repeat):
-        print(string, end='') # end='' overrides the default of printing on a new line
+        print(string, end='') # end='' overrides the default of printing on a new line. This only works
+                              # with the print function. It will throw a error if it is used with return
 
 
 # 5. Write a function called 'print_sign' that takes an integer and prints
